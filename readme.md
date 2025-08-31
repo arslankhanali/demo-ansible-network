@@ -1,11 +1,27 @@
-# fetch config
-ansible-navigator run fetch.yaml --mode stdout
+### New user to login
+```sh
+conf t
+username admin privilege 15 secret STRONGPASSWORD
+ip http authentication local
+end
+wr mem
+```
 
-git config --global user.name "Arslan Khan"
-git config --global user.email "arslankhanali@gmail.com"
+### Set motd
+```sh
+ssh rtr1
 
-git init
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/arslankhanali/demo-ansible-network.git
-git push -u origin main
+conf t
+banner motd
+Welcome to demo
+end
+wr mem
+```
+
+
+### fetch config
+ansible-navigator run 1-fetch.yaml --mode stdout
+
+
+### apply config
+ansible-navigator run 2-apply.yaml --mode stdout

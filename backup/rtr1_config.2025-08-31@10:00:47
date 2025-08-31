@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration : 7540 bytes
+Current configuration : 7575 bytes
 !
-! Last configuration change at 09:03:59 UTC Sun Aug 31 2025 by admin
+! Last configuration change at 10:00:09 UTC Sun Aug 31 2025 by ec2-user
 !
 version 17.14
 service timestamps debug datetime msec
@@ -228,6 +228,9 @@ snmp-server community ansible-private RW
 !
 control-plane
 !
+banner motd ^C
+Welcome to demo
+^C
 !
 line con 0
  stopbits 1
