@@ -5,7 +5,7 @@
 
   vars:
     # URL to the raw configuration file on GitHub. Correct format.
-    github_raw_url: "https://raw.githubusercontent.com/arslankhanali/demo-ansible-network/main/rtr1_config.txt"
+    github_raw_url: "https://raw.githubusercontent.com/arslankhanali/demo-ansible-network/refs/heads/main/rtr1_config.txt"
     # Local path where the file will be downloaded
     local_config_file: "/tmp/{{ inventory_hostname }}_config.txt"
 
