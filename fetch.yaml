@@ -1,0 +1,20 @@
+---
+- name: Fetch Cisco router running config
+  hosts: cisco
+  gather_facts: false
+
+  vars:
+    output_file: "/home/student/demo/{{ inventory_hostname }}_running_config.txt"
+
+  tasks:
+
+    - name: Get full running configuration
+      cisco.ios.ios_command:
+        commands: show running-config
+      register: running_config
+
+    - name: Save running configuration to local file
+      local_action:
+        module: copy
+        content: "{{ running_config.stdout[0] }}"
+        dest: "{{ output_file }}"
