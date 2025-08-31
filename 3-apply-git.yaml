@@ -1,0 +1,23 @@
+---
+- name: Apply Cisco router configuration from GitHub
+  hosts: cisco
+  gather_facts: false
+
+  vars:
+    # URL to the raw configuration file on GitHub. Correct format.
+    github_raw_url: "https://raw.githubusercontent.com/arslankhanali/demo-ansible-network/main/rtr1_config.txt"
+    # Local path where the file will be downloaded
+    local_config_file: "/tmp/{{ inventory_hostname }}_config.txt"
+
+  tasks:
+    - name: Download configuration file from GitHub
+      ansible.builtin.get_url:
+        url: "{{ github_raw_url }}"
+        dest: "{{ local_config_file }}"
+        mode: '0644'
+
+    - name: Apply configuration from downloaded file
+      cisco.ios.ios_config:
+        src: "{{ local_config_file }}"
+        backup: yes
+        save_when: modified

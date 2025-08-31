@@ -25,3 +25,6 @@ ansible-navigator run 1-fetch.yaml --mode stdout
 
 ### apply config
 ansible-navigator run 2-apply.yaml --mode stdout
+
+### apply config from git
+ansible-navigator run  --mode stdout 2-apply.yaml
