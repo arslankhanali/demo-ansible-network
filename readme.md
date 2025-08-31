@@ -42,3 +42,30 @@ https://student1.ml647.example.opentlc.com/api/controller/v2/job_templates/17/gi
 XB19ekQp6FvQPIOpbXY5GQmWaCprZnOxNqgvjAXdJKRVaWHJfu
 
 
+
+### API
+https://student1.ml647.example.opentlc.com/api/controller/v2/
+
+
+curl --location --request POST 'https://<your_aap_url>/api/v2/projects/' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer <your_access_token>' \
+--data-raw '{
+  "name": "My New Project",
+  "organization": 1,
+  "scm_type": "git",
+  "scm_url": "https://github.com/my-user/my-repo.git"
+}'
+
+curl -u admin:43l7dlaf -k -X POST https://student1.ml647.example.opentlc.com/api/controller/v2/tokens/
+
+uLeAKJPOevkDrl9fkkXiyNdymjHpQS
+
+
+## app
+pip install flask
+pip install Werkzeug
+
+chmod u+r rtr1_config.txt
+
+pythong app.py
