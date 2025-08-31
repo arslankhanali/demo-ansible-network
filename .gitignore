@@ -1,2 +1,3 @@
 *.log
-fetch-artifact-2025*
+*.json
+backup
