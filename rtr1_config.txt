@@ -173,7 +173,7 @@ snmp-server community ansible-private RW
 control-plane
 !
 banner motd ^C
-Welcome to demo4
+Welcome to demo1
 ^C
 !
 line con 0
