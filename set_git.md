@@ -12,5 +12,5 @@ git push -u origin main
 
 ## Pushes
 git add .
-git commit -m "fetch and apply working"
+git commit -m "update motd"
 git push
