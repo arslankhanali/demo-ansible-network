@@ -174,6 +174,7 @@ git pull
 ### 11. Create app
 ``````
 pip install flask
+pip install requests
 pip install Werkzeug
 
 chmod u+r rtr1_config.txt
