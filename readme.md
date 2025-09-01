@@ -1,5 +1,8 @@
 cd /Users/arslankhan/Codes/demo.redhat.com/Ansible-AcademySessions/demo-ansible-network
 
+git clone https://github.com/arslankhanali/demo-ansible-network.git
+
+
 ### New user to login
 ```sh
 conf t
