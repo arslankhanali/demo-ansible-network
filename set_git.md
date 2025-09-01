@@ -1,4 +1,6 @@
 # Setup git
+```sh
+
 git config --global user.name "Arslan Khan"
 git config --global user.email "arslankhanali@gmail.com"
 
@@ -14,3 +16,4 @@ git push -u origin main
 git add .
 git commit -m "update motd"
 git push
+```

@@ -1,3 +1,5 @@
+# DUMMY VALUES USED in this repository
+
 cd /Users/arslankhan/Codes/demo.redhat.com/Ansible-AcademySessions/demo-ansible-network
 
 ## Git clone and test push
@@ -67,6 +69,8 @@ wr mem
 
 ### 2. fetch config
 ```sh
+ansible-navigator inventory
+
 ansible-navigator run 1-fetch.yaml --mode stdout --pae false
 ```
 
@@ -77,10 +81,12 @@ ansible-navigator run 2-apply.yaml --mode stdout --pae false
 
 ### 4. apply config from git
 ```sh
+# Make it a source of truth
 git add .
 git commit -m "updated motd"
 git push
 
+# Apply from Source of truth
 ansible-navigator run  --mode stdout 3-apply-git.yaml --pae false
 
 ssh rtr1
@@ -150,27 +156,32 @@ Go to github and add webhook
 
 
 ### 10. Open a PR
-### PR
+```sh
 git checkout main
 git pull
-git checkout -b update-rtr1-config
+
+# -b when running for the first time 
+# git checkout -b update-rtr1-config
+git checkout update-rtr1-config
 git add rtr1_config.txt
-git commit -m "Update hostname and banner in rtr1 config"
+git commit -m "Update motd"
 git push -u origin update-rtr1-config
 
 git checkout main
 git pull
+```
 
-
-### 10. Create app
+### 11. Create app
+``````
 pip install flask
+pip install requests
 pip install Werkzeug
 
 chmod u+r rtr1_config.txt
 
-python app.py
+python3 app.py
 
-
+``````
 ### delete
 rm *.json
 rm -r backup/
@@ -181,17 +192,3 @@ rm -r backup/
 https://student1.ml647.example.opentlc.com/api/controller/v2/
 
 curl -u admin:43l7dlaf -k -X POST https://student1.ml647.example.opentlc.com/api/controller/v2/tokens/
-
-
-
-
-### PR
-git checkout main
-git pull
-git checkout -b update-rtr1-config
-git add rtr1_config.txt
-git commit -m "Update hostname and banner in rtr1 config"
-git push -u origin update-rtr1-config
-
-git checkout main
-git pull
