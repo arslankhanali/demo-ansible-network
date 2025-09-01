@@ -51,6 +51,7 @@ wr mem
 ---
 
 ## Demo Start
+When running a playbook with ansible-navigator run, you can use the --pae false (or --playbook-artifact-enable false)
 
 ### Set motd
 ```sh
@@ -66,12 +67,12 @@ wr mem
 
 ### fetch config
 ```sh
-ansible-navigator run 1-fetch.yaml --mode stdout
+ansible-navigator run 1-fetch.yaml --mode stdout --pae false
 ```
 
 ### apply config
 ```sh
-ansible-navigator run 2-apply.yaml --mode stdout
+ansible-navigator run 2-apply.yaml --mode stdout --pae false
 ```
 
 ### apply config from git
@@ -80,7 +81,7 @@ git add .
 git commit -m "updated motd"
 git push
 
-ansible-navigator run  --mode stdout 3-apply-git.yaml
+ansible-navigator run  --mode stdout 3-apply-git.yaml --pae false
 
 ssh rtr1
 
