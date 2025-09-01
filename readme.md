@@ -81,10 +81,12 @@ ansible-navigator run 2-apply.yaml --mode stdout --pae false
 
 ### 4. apply config from git
 ```sh
+# Make it a source of truth
 git add .
 git commit -m "updated motd"
 git push
 
+# Apply from Source of truth
 ansible-navigator run  --mode stdout 3-apply-git.yaml --pae false
 
 ssh rtr1
