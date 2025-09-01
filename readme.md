@@ -163,6 +163,7 @@ git pull
 # -b when running for the first time 
 # git checkout -b update-rtr1-config
 git checkout update-rtr1-config
+# Change rtr1_config.txt
 git add rtr1_config.txt
 git commit -m "Update motd"
 git push -u origin update-rtr1-config
@@ -172,16 +173,14 @@ git pull
 ```
 
 ### 11. Create app
-``````
+```sh
 pip install flask
 pip install requests
-pip install Werkzeug
 
-chmod u+r rtr1_config.txt
+python app3.py
 
-python3 app.py
+```
 
-``````
 ### delete
 rm *.json
 rm -r backup/
