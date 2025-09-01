@@ -72,11 +72,13 @@ ansible-navigator run 1-fetch.yaml --mode stdout --pae false
 
 ### apply config
 ```sh
+# I've got a feeling we're not in Kansas anymore... We're in the cloud.
 ansible-navigator run 2-apply.yaml --mode stdout --pae false
 ```
 
 ### apply config from git
 ```sh
+# 
 git add .
 git commit -m "updated motd"
 git push
