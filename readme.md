@@ -53,7 +53,7 @@ wr mem
 ## Demo Start
 When running a playbook with ansible-navigator run, you can use the --pae false (or --playbook-artifact-enable false)
 
-### Set motd
+### 1. Set motd
 ```sh
 ssh rtr1
 
@@ -65,20 +65,18 @@ end
 wr mem
 ```
 
-### fetch config
+### 2. fetch config
 ```sh
 ansible-navigator run 1-fetch.yaml --mode stdout --pae false
 ```
 
-### apply config
+### 3. apply config
 ```sh
-# I've got a feeling we're not in Kansas anymore... We're in the cloud.
 ansible-navigator run 2-apply.yaml --mode stdout --pae false
 ```
 
-### apply config from git
+### 4. apply config from git
 ```sh
-# 
 git add .
 git commit -m "updated motd"
 git push
@@ -88,43 +86,103 @@ ansible-navigator run  --mode stdout 3-apply-git.yaml --pae false
 ssh rtr1
 
 ```
-### delete
-rm *.json
-rm -r backup/
+
+### 5. AAP: Create project
+```sh
+Name: Framework-in-action
+Organisation: Default
+Execution env: network workshop execution environment
+source control: git
+Source control URL: https://github.com/arslankhanali/demo-ansible-network
+branch: main 
+```
+
+### 6. Job template
+```sh
+Name: apply-config-to-router
+Inventory: Workshop inventory
+Project: Framework-in-action
+Execution env: network workshop execution environment
+credentials: workshop credentials | Machine
+
+```
+
+### 7. worksflow Job template
+```sh
+Name: apply-config-workflow
+Organisation: Default
+Inventory: Workshop inventory
+
+Options
+  Enable webhook
+  Github
+```
+
+### 8. Add Steps
+```sh
+# Approval
+Node type: Approvals
+Name: Approve-workflow
+
+# Job templaye
+Node type: Job Template
+Job template: apply-config-to-router
+Status: Run on success
+Convergence: Any
+
+```
+
+### 9. Webhook
+Go back to workflow jon template and click edit. Copy the 
+- Webhook URL
+  - https://student1.s2vbd.example.opentlc.com/api/controller/v2/workflow_job_templates/17/github/
+- Webhook Key
+  - skAQBkd5ECVdYb2sl3731UoU7V9FYHB73QHuCkAeEREUrx86pf
+
+Go to github and add webhook
+- https://github.com/arslankhanali/demo-ansible-network/settings/hooks
+- Payload URL: https://student1.s2vbd.example.opentlc.com/api/controller/v2/workflow_job_templates/17/github/
+- Content type: application/json
+- Secret: skAQBkd5ECVdYb2sl3731UoU7V9FYHB73QHuCkAeEREUrx86pf
+- SSL verification: Enable (default)
+- Which events would you like to trigger this webhook?: Just the push event. (default)
+- Check Active (default)
 
 
-### Webhook
-https://student1.ml647.example.opentlc.com/api/controller/v2/job_templates/17/github/
-XB19ekQp6FvQPIOpbXY5GQmWaCprZnOxNqgvjAXdJKRVaWHJfu
+### 10. Open a PR
+### PR
+git checkout main
+git pull
+git checkout -b update-rtr1-config
+git add rtr1_config.txt
+git commit -m "Update hostname and banner in rtr1 config"
+git push -u origin update-rtr1-config
+
+git checkout main
+git pull
 
 
-
-### API
-https://student1.ml647.example.opentlc.com/api/controller/v2/
-
-
-curl --location --request POST 'https://<your_aap_url>/api/v2/projects/' \
---header 'Content-Type: application/json' \
---header 'Authorization: Bearer <your_access_token>' \
---data-raw '{
-  "name": "My New Project",
-  "organization": 1,
-  "scm_type": "git",
-  "scm_url": "https://github.com/my-user/my-repo.git"
-}'
-
-curl -u admin:43l7dlaf -k -X POST https://student1.ml647.example.opentlc.com/api/controller/v2/tokens/
-
-uLeAKJPOevkDrl9fkkXiyNdymjHpQS
-
-
-## app
+### 10. Create app
 pip install flask
 pip install Werkzeug
 
 chmod u+r rtr1_config.txt
 
 python app.py
+
+
+### delete
+rm *.json
+rm -r backup/
+
+
+
+### API
+https://student1.ml647.example.opentlc.com/api/controller/v2/
+
+curl -u admin:43l7dlaf -k -X POST https://student1.ml647.example.opentlc.com/api/controller/v2/tokens/
+
+
 
 
 ### PR
