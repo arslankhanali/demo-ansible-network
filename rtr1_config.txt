@@ -1,6 +1,6 @@
-Using 3854 out of 33554432 bytes
+Using 3752 out of 33554432 bytes
 !
-! Last configuration change at 04:58:48 UTC Mon Sep 1 2025 by ec2-user
+! Last configuration change at 07:21:46 UTC Mon Sep 1 2025 by ec2-user
 !
 version 17.14
 service timestamps debug datetime msec
@@ -171,7 +171,7 @@ ip access-list standard GS_NAT_ACL
 control-plane
 !
 banner motd ^C
-There is no spoon... only an ansible playbook.
+Demo for Services Austraila
 ^C
 !
 line con 0
