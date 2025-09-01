@@ -12,6 +12,17 @@ git config --global user.email "arslankhanali@gmail.com"
 git add .
 git commit -m "update motd"
 git push
+
+
+# Gitignore setup
+tee .gitignore > /dev/null <<EOL
+.*
+*.json
+backup/
+EOL
+
+git rm -r --cached .
+
 ```
 
 ### Login to cisco router - CLI
