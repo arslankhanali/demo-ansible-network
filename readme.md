@@ -69,6 +69,8 @@ wr mem
 
 ### 2. fetch config
 ```sh
+ansible-navigator inventory
+
 ansible-navigator run 1-fetch.yaml --mode stdout --pae false
 ```
 
