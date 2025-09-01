@@ -1,3 +1,5 @@
+cd /Users/arslankhan/Codes/demo.redhat.com/Ansible-AcademySessions/demo-ansible-network
+
 ### New user to login
 ```sh
 conf t
@@ -68,4 +70,16 @@ pip install Werkzeug
 
 chmod u+r rtr1_config.txt
 
-pythong app.py
+python app.py
+
+
+### PR
+git checkout main
+git pull
+git checkout -b update-rtr1-config
+git add rtr1_config.txt
+git commit -m "Update hostname and banner in rtr1 config"
+git push -u origin update-rtr1-config
+
+git checkout main
+git pull
