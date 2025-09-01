@@ -161,7 +161,9 @@ git checkout main
 git pull
 
 # -b when running for the first time 
-# git checkout -b update-rtr1-config
+git checkout -b update-rtr1-config
+
+# If you already have a branch
 git checkout update-rtr1-config
 # Change rtr1_config.txt
 git add rtr1_config.txt
@@ -177,6 +179,10 @@ git pull
 pip install flask
 pip install requests
 
+# app only changes config file locally 
+python app.py
+
+# app changes config file locally and pushes changes to a new branch 'update-rtr1-config'
 python app3.py
 
 ```
