@@ -171,7 +171,7 @@ ip access-list standard GS_NAT_ACL
 control-plane
 !
 banner motd ^C
-This is a demo
+hello
 ^C
 !
 line con 0

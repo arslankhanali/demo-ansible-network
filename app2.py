@@ -231,6 +231,10 @@ def save_and_push_config():
         # Execute Git commands using subprocess
         # This will be done in the directory where the script is running
         
+        subprocess.run(['git', 'add', '.'], check=True, cwd=SCRIPT_DIR)
+        subprocess.run(['git', 'commit', '-m "motd changes"'], check=True, cwd=SCRIPT_DIR)
+        subprocess.run(['git', 'push'], check=True, cwd=SCRIPT_DIR)
+        
         # 1. Checkout the branch
         subprocess.run(['git', 'checkout', 'update-rtr1-config'], check=True, cwd=SCRIPT_DIR)
         
