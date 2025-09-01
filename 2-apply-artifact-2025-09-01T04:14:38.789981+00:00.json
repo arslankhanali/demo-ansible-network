@@ -1,0 +1,245 @@
+{
+    "plays": [
+        {
+            "__play_name": "Apply Cisco router configuration",
+            "name": "Apply Cisco router configuration",
+            "pattern": "rtr1",
+            "play": "Apply Cisco router configuration",
+            "play_pattern": "rtr1",
+            "play_uuid": "56ff8f22-34c0-4937-bbf2-000000000006",
+            "playbook": "/home/student/demo-ansible-network/2-apply.yaml",
+            "playbook_uuid": "07f419dd-e4fa-4e97-bf6e-826bf22212a2",
+            "tasks": [
+                {
+                    "__changed": true,
+                    "__duration": "6s",
+                    "__host": "rtr1",
+                    "__number": 0,
+                    "__result": "Ok",
+                    "__task": "Apply configuration from file",
+                    "__task_action": "cisco.ios.ios_config",
+                    "duration": 5.685847,
+                    "end": "2025-09-01T04:14:38.376102+00:00",
+                    "event_loop": null,
+                    "host": "rtr1",
+                    "play": "Apply Cisco router configuration",
+                    "play_pattern": "rtr1",
+                    "play_uuid": "56ff8f22-34c0-4937-bbf2-000000000006",
+                    "playbook": "/home/student/demo-ansible-network/2-apply.yaml",
+                    "playbook_uuid": "07f419dd-e4fa-4e97-bf6e-826bf22212a2",
+                    "remote_addr": "rtr1",
+                    "res": {
+                        "_ansible_no_log": false,
+                        "backup_path": "/home/student/demo-ansible-network/backup/rtr1_config.2025-09-01@04:14:38",
+                        "banners": {
+                            "banner motd": "Demo for Services Austraila - 123"
+                        },
+                        "changed": true,
+                        "commands": [
+                            "crypto pki certificate chain TP-self-signed-2218560819",
+                            "certificate self-signed 01 nvram:IOS-Self-Sig#1.cer",
+                            "crypto pki certificate chain SLA-TrustPoint",
+                            "certificate ca 01 nvram:CiscoLicensi#1CA.cer"
+                        ],
+                        "date": "2025-09-01",
+                        "filename": "rtr1_config.2025-09-01@04:14:38",
+                        "invocation": {
+                            "module_args": {
+                                "after": null,
+                                "backup": true,
+                                "backup_options": null,
+                                "before": null,
+                                "defaults": false,
+                                "diff_against": null,
+                                "diff_ignore_lines": null,
+                                "intended_config": null,
+                                "lines": null,
+                                "match": "line",
+                                "multiline_delimiter": "@",
+                                "parents": null,
+                                "replace": "line",
+                                "running_config": null,
+                                "save_when": "modified",
+                                "src": "Using 3752 out of 33554432 bytes\n!\n! Last configuration change at 04:10:54 UTC Mon Sep 1 2025 by ec2-user\n!\nversion 17.14\nservice timestamps debug datetime msec\nservice timestamps log datetime msec\nservice password-encryption\nplatform qfp utilization monitor load 80\nplatform sslvpn use-pd\nplatform console virtual\n!\nhostname rtr1\n!\nboot-start-marker\nboot-end-marker\n!\n!\nvrf definition GS\n rd 100:100\n !\n address-family ipv4\n exit-address-family\n!\nlogging persistent size 1000000 filesize 8192 immediate\naaa new-model\n!\n!\naaa authentication login default local\naaa authorization exec default local none \n!\n!\naaa session-id common\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\nlogin on-success log\n!\n!\nsubscriber templating\nipv6 unicast-routing\n!\n!\n!\ncrypto pki trustpoint TP-self-signed-2218560819\n enrollment selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-2218560819\n revocation-check none\n rsakeypair TP-self-signed-2218560819\n hash sha256\n!\ncrypto pki trustpoint SLA-TrustPoint\n enrollment pkcs12\n revocation-check crl\n hash sha256\n!\n!\ncrypto pki certificate chain TP-self-signed-2218560819\n certificate self-signed 01 nvram:IOS-Self-Sig#1.cer\ncrypto pki certificate chain SLA-TrustPoint\n certificate ca 01 nvram:CiscoLicensi#1CA.cer\n!\n!\nlicense udi pid C8000V sn 9REKHPM814C\nmemory free low-watermark processor 195515\ndiagnostic bootup level minimal\n!\n!\n!\n!\nusername ec2-user privilege 15\nusername admin privilege 15 secret 9 $9$OIGWxMe1tZxyXU$Joq7CVYtUa2Ma/Gw4yI0ezM8iyCFLWxr4seH0NcGTjQ\n!\nredundancy\n!\n!\n!\n!\n!\n!\n!\n!\n!\ninterface Loopback0\n ip address 192.168.1.1 255.255.255.255\n!\ninterface Tunnel0\n ip address 10.100.100.1 255.255.255.0\n ip mtu 1476\n ip tcp adjust-mss 1360\n ip ospf 1 area 0\n tunnel source GigabitEthernet1\n tunnel destination 172.16.32.218\n!\ninterface Tunnel1\n ip address 10.200.200.1 255.255.255.0\n tunnel source GigabitEthernet1\n tunnel destination 3.135.187.210\n!\ninterface VirtualPortGroup0\n vrf forwarding GS\n ip address 192.168.35.101 255.255.255.0\n ip nat inside\n!\ninterface GigabitEthernet1\n ip address dhcp\n ip nat outside\n negotiation auto\n ipv6 address dhcp\n ipv6 enable\n ipv6 nd autoconfig default-route\n!\nrouter ospf 1\n router-id 192.168.1.1\n redistribute bgp 65000\n!\nrouter bgp 65000\n bgp router-id 192.168.1.1\n bgp log-neighbor-changes\n neighbor 10.200.200.2 remote-as 65001\n neighbor 10.200.200.2 ebgp-multihop 255\n !\n address-family ipv4\n  network 10.100.100.0 mask 255.255.255.0\n  network 10.200.200.0 mask 255.255.255.0\n  network 172.16.0.0\n  network 192.168.1.1 mask 255.255.255.255\n  redistribute ospf 1\n  neighbor 10.200.200.2 activate\n exit-address-family\n!\niox\nip forward-protocol nd\nip tcp window-size 8192\n!\nip http server\nip http authentication local\nip http secure-server\nip route 0.0.0.0 0.0.0.0 GigabitEthernet1 172.16.0.1\nip route vrf GS 0.0.0.0 0.0.0.0 GigabitEthernet1 172.16.0.1 global\nip nat inside source list GS_NAT_ACL interface GigabitEthernet1 vrf GS overload\nip ssh bulk-mode 131072\nip ssh rsa keypair-name ssh-key\nip ssh pubkey-chain\n username ec2-user\n  key-hash ssh-rsa 3BBE4D811308EF587F83B1CCE91A65C7 \nip ssh server algorithm publickey ecdsa-sha2-nistp256 ecdsa-sha2-nistp384 ecdsa-sha2-nistp521 ssh-ed25519 ssh-rsa x509v3-ecdsa-sha2-nistp256 x509v3-ecdsa-sha2-nistp384 x509v3-ecdsa-sha2-nistp521\nip scp server enable\n!\n!\nip access-list standard GS_NAT_ACL\n 10 permit 192.168.35.0 0.0.0.255\n!\n!\n!\n!\n!\n!\ncontrol-plane\n!\nbanner motd ^C\nDemo for Services Austraila - 123\n^C\n!\nline con 0\n stopbits 1\nline aux 0\nline vty 0 4\n length 0\n transport input ssh\nline vty 5 20\n length 0\n transport input ssh\n!\n!\n!\n!\n!\n!\n!\napp-hosting appid guestshell\n app-vnic gateway1 virtualportgroup 0 guest-interface 0\n  guest-ipaddress 192.168.35.102 netmask 255.255.255.0\n app-default-gateway 192.168.35.101 guest-interface 0\n name-server0 8.8.8.8\nend"
+                            }
+                        },
+                        "shortname": "/home/student/demo-ansible-network/backup/rtr1_config",
+                        "time": "04:14:38",
+                        "updates": [
+                            "crypto pki certificate chain TP-self-signed-2218560819",
+                            "certificate self-signed 01 nvram:IOS-Self-Sig#1.cer",
+                            "crypto pki certificate chain SLA-TrustPoint",
+                            "certificate ca 01 nvram:CiscoLicensi#1CA.cer"
+                        ],
+                        "warnings": [
+                            "To ensure idempotency and correct diff the input configuration lines should be similar to how they appear if present in the running configuration on device including the indentation"
+                        ]
+                    },
+                    "resolved_action": "cisco.ios.ios",
+                    "start": "2025-09-01T04:14:32.690255+00:00",
+                    "task": "Apply configuration from file",
+                    "task_action": "cisco.ios.ios_config",
+                    "task_args": "",
+                    "task_path": "/home/student/demo-ansible-network/2-apply.yaml:10",
+                    "task_uuid": "56ff8f22-34c0-4937-bbf2-000000000008",
+                    "uuid": "68276f32-beb7-45f3-bb55-95c0612d42a0"
+                }
+            ],
+            "uuid": "56ff8f22-34c0-4937-bbf2-000000000006"
+        }
+    ],
+    "settings_entries": {
+        "ansible-navigator": {
+            "ansible": {
+                "config": {
+                    "help": false
+                },
+                "doc": {
+                    "help": false,
+                    "plugin": {
+                        "type": "module"
+                    }
+                },
+                "inventory": {
+                    "entries": [
+                        "/home/student/lab_inventory/hosts"
+                    ],
+                    "help": false
+                },
+                "playbook": {
+                    "help": false,
+                    "path": "/home/student/demo-ansible-network/2-apply.yaml"
+                }
+            },
+            "ansible-builder": {
+                "help": false,
+                "workdir": "/home/student/demo-ansible-network"
+            },
+            "ansible-runner": {
+                "job-events": false
+            },
+            "app": "run",
+            "collection-doc-cache-path": "/home/student/.cache/ansible-navigator/collection_doc_cache.db",
+            "color": {
+                "enable": true,
+                "osc4": true
+            },
+            "editor": {
+                "command": "vi +{line_number} {filename}",
+                "console": true
+            },
+            "enable-prompts": false,
+            "exec": {
+                "command": "/bin/bash",
+                "shell": true
+            },
+            "execution-environment": {
+                "container-engine": "podman",
+                "enabled": true,
+                "image": "quay.io/acme_corp/network-ee:latest",
+                "pull": {
+                    "policy": "missing"
+                },
+                "volume-mounts": [
+                    {
+                        "dest": "/etc/ansible",
+                        "src": "/etc/ansible"
+                    }
+                ]
+            },
+            "format": "yaml",
+            "images": {
+                "details": [
+                    "everything"
+                ]
+            },
+            "logging": {
+                "append": true,
+                "file": "/home/student/demo-ansible-network/ansible-navigator.log",
+                "level": "warning"
+            },
+            "mode": "stdout",
+            "playbook-artifact": {
+                "enable": true,
+                "save-as": "{playbook_dir}/{playbook_name}-artifact-{time_stamp}.json"
+            },
+            "settings": {
+                "effective": false,
+                "sample": false,
+                "schema": "json",
+                "sources": false
+            },
+            "time-zone": "UTC"
+        }
+    },
+    "settings_sources": {
+        "ansible-navigator.ansible-builder.help": "Defaults",
+        "ansible-navigator.ansible-builder.workdir": "Defaults",
+        "ansible-navigator.ansible-lint.config": "Not set",
+        "ansible-navigator.ansible-lint.lintables": "Not set",
+        "ansible-navigator.ansible-runner.artifact-dir": "Not set",
+        "ansible-navigator.ansible-runner.job-events": "Defaults",
+        "ansible-navigator.ansible-runner.rotate-artifacts-count": "Not set",
+        "ansible-navigator.ansible-runner.timeout": "Not set",
+        "ansible-navigator.ansible.cmdline": "Not set",
+        "ansible-navigator.ansible.config.help": "Defaults",
+        "ansible-navigator.ansible.config.path": "Not set",
+        "ansible-navigator.ansible.doc.help": "Defaults",
+        "ansible-navigator.ansible.doc.plugin.name": "Not set",
+        "ansible-navigator.ansible.doc.plugin.type": "Defaults",
+        "ansible-navigator.ansible.inventory.entries": "Settings file",
+        "ansible-navigator.ansible.inventory.help": "Defaults",
+        "ansible-navigator.ansible.playbook.help": "Defaults",
+        "ansible-navigator.ansible.playbook.path": "Command line",
+        "ansible-navigator.app": "Command line",
+        "ansible-navigator.collection-doc-cache-path": "Defaults",
+        "ansible-navigator.color.enable": "Defaults",
+        "ansible-navigator.color.osc4": "Defaults",
+        "ansible-navigator.editor.command": "Defaults",
+        "ansible-navigator.editor.console": "Defaults",
+        "ansible-navigator.enable-prompts": "Defaults",
+        "ansible-navigator.exec.command": "Defaults",
+        "ansible-navigator.exec.shell": "Defaults",
+        "ansible-navigator.execution-environment.container-engine": "Settings file",
+        "ansible-navigator.execution-environment.container-options": "Not set",
+        "ansible-navigator.execution-environment.enabled": "Settings file",
+        "ansible-navigator.execution-environment.environment-variables.pass": "Not set",
+        "ansible-navigator.execution-environment.environment-variables.set": "Not set",
+        "ansible-navigator.execution-environment.image": "Settings file",
+        "ansible-navigator.execution-environment.pull.arguments": "Not set",
+        "ansible-navigator.execution-environment.pull.policy": "Settings file",
+        "ansible-navigator.execution-environment.volume-mounts": "Settings file",
+        "ansible-navigator.format": "Defaults",
+        "ansible-navigator.images.details": "Defaults",
+        "ansible-navigator.inventory-columns": "Not set",
+        "ansible-navigator.logging.append": "Defaults",
+        "ansible-navigator.logging.file": "Defaults",
+        "ansible-navigator.logging.level": "Defaults",
+        "ansible-navigator.mode": "Command line",
+        "ansible-navigator.playbook-artifact.enable": "Defaults",
+        "ansible-navigator.playbook-artifact.replay": "Not set",
+        "ansible-navigator.playbook-artifact.save-as": "Defaults",
+        "ansible-navigator.settings.effective": "Defaults",
+        "ansible-navigator.settings.sample": "Defaults",
+        "ansible-navigator.settings.schema": "Defaults",
+        "ansible-navigator.settings.sources": "Defaults",
+        "ansible-navigator.time-zone": "Defaults",
+        "settings_file_path": "/home/student/.ansible-navigator.yml",
+        "settings_file_source": "Search path"
+    },
+    "status": "successful",
+    "status_color": 10,
+    "stdout": [
+        "",
+        "PLAY [Apply Cisco router configuration] ****************************************",
+        "",
+        "TASK [Apply configuration from file] *******************************************",
+        "/usr/lib64/python3.9/site-packages/pylibsshext/_version.py:15: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.",
+        "  from pkg_resources import get_distribution as _get_dist  # noqa: WPS433",
+        "\u001b[0;33mchanged: [rtr1]\u001b[0m",
+        "",
+        "PLAY RECAP *********************************************************************",
+        "\u001b[0;33mrtr1\u001b[0m                       : \u001b[0;32mok=1   \u001b[0m \u001b[0;33mchanged=1   \u001b[0m unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   "
+    ],
+    "version": "2.0.0"
+}

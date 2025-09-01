@@ -1,6 +1,6 @@
-Using 3800 out of 33554432 bytes
+Using 3752 out of 33554432 bytes
 !
-! Last configuration change at 09:45:11 UTC Sun Aug 31 2025 by ec2-user
+! Last configuration change at 04:10:54 UTC Mon Sep 1 2025 by ec2-user
 !
 version 17.14
 service timestamps debug datetime msec
@@ -54,11 +54,11 @@ ipv6 unicast-routing
 !
 !
 !
-crypto pki trustpoint TP-self-signed-3223874878
+crypto pki trustpoint TP-self-signed-2218560819
  enrollment selfsigned
- subject-name cn=IOS-Self-Signed-Certificate-3223874878
+ subject-name cn=IOS-Self-Signed-Certificate-2218560819
  revocation-check none
- rsakeypair TP-self-signed-3223874878
+ rsakeypair TP-self-signed-2218560819
  hash sha256
 !
 crypto pki trustpoint SLA-TrustPoint
@@ -67,13 +67,13 @@ crypto pki trustpoint SLA-TrustPoint
  hash sha256
 !
 !
-crypto pki certificate chain TP-self-signed-3223874878
+crypto pki certificate chain TP-self-signed-2218560819
  certificate self-signed 01 nvram:IOS-Self-Sig#1.cer
 crypto pki certificate chain SLA-TrustPoint
  certificate ca 01 nvram:CiscoLicensi#1CA.cer
 !
 !
-license udi pid C8000V sn 9QXJYTTJ26P
+license udi pid C8000V sn 9REKHPM814C
 memory free low-watermark processor 195515
 diagnostic bootup level minimal
 !
@@ -81,7 +81,7 @@ diagnostic bootup level minimal
 !
 !
 username ec2-user privilege 15
-username admin privilege 15 secret 9 $9$XxOdBNBYHdo2i.$iPLmSWop4WNW43JZTFpG9YPYtvVp8ZSBs/tbjkjmIwY
+username admin privilege 15 secret 9 $9$OIGWxMe1tZxyXU$Joq7CVYtUa2Ma/Gw4yI0ezM8iyCFLWxr4seH0NcGTjQ
 !
 redundancy
 !
@@ -102,12 +102,12 @@ interface Tunnel0
  ip tcp adjust-mss 1360
  ip ospf 1 area 0
  tunnel source GigabitEthernet1
- tunnel destination 172.16.21.117
+ tunnel destination 172.16.32.218
 !
 interface Tunnel1
  ip address 10.200.200.1 255.255.255.0
  tunnel source GigabitEthernet1
- tunnel destination 3.12.71.158
+ tunnel destination 3.135.187.210
 !
 interface VirtualPortGroup0
  vrf forwarding GS
@@ -155,7 +155,7 @@ ip ssh bulk-mode 131072
 ip ssh rsa keypair-name ssh-key
 ip ssh pubkey-chain
  username ec2-user
-  key-hash ssh-rsa F8985F99665805BA32040A3B25E9C2EA 
+  key-hash ssh-rsa 3BBE4D811308EF587F83B1CCE91A65C7 
 ip ssh server algorithm publickey ecdsa-sha2-nistp256 ecdsa-sha2-nistp384 ecdsa-sha2-nistp521 ssh-ed25519 ssh-rsa x509v3-ecdsa-sha2-nistp256 x509v3-ecdsa-sha2-nistp384 x509v3-ecdsa-sha2-nistp521
 ip scp server enable
 !
@@ -164,8 +164,6 @@ ip access-list standard GS_NAT_ACL
  10 permit 192.168.35.0 0.0.0.255
 !
 !
-snmp-server community ansible-public RO
-snmp-server community ansible-private RW
 !
 !
 !
@@ -173,15 +171,17 @@ snmp-server community ansible-private RW
 control-plane
 !
 banner motd ^C
-Welcome to demo5
+Demo for Services Austraila - 123 456
 ^C
 !
 line con 0
  stopbits 1
 line aux 0
 line vty 0 4
+ length 0
  transport input ssh
 line vty 5 20
+ length 0
  transport input ssh
 !
 !

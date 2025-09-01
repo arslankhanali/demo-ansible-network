@@ -1,6 +1,6 @@
 ---
 - name: Apply Cisco router configuration from GitHub
-  hosts: cisco
+  hosts: rtr1
   gather_facts: false
 
   vars:

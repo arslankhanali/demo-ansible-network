@@ -1,42 +1,79 @@
 cd /Users/arslankhan/Codes/demo.redhat.com/Ansible-AcademySessions/demo-ansible-network
 
-git clone https://github.com/arslankhanali/demo-ansible-network.git
+## Git clone and test push
 
-
-### New user to login
 ```sh
+git clone https://github.com/arslankhanali/demo-ansible-network.git
+cd demo-ansible-network
+
+git config --global user.name "Arslan Khan"
+git config --global user.email "arslankhanali@gmail.com"
+
+git add .
+git commit -m "update motd"
+git push
+```
+
+### Login to cisco router - CLI
+```sh
+ssh rtr1
+sh run
+exit
+```
+
+### Login to cisco router - Web
+```sh
+# Get IP for rtr1
+cat /etc/hosts
+
+https://3.137.184.95
+
+# Create an account to login
+ssh rtr1
+
 conf t
 username admin privilege 15 secret STRONGPASSWORD
 ip http authentication local
 end
 wr mem
 ```
+---
+
+## Demo Start
 
 ### Set motd
 ```sh
 ssh rtr1
 
 conf t
-banner motd
-Welcome to demo
+banner motd #
+Demo for Services Austraila
+#
 end
 wr mem
 ```
 
-
 ### fetch config
+```sh
 ansible-navigator run 1-fetch.yaml --mode stdout
-
+```
 
 ### apply config
+```sh
 ansible-navigator run 2-apply.yaml --mode stdout
+```
 
 ### apply config from git
+```sh
+git add .
+git commit -m "updated motd"
+git push
+
 ansible-navigator run  --mode stdout 3-apply-git.yaml
 
 ssh rtr1
 
-
+```
 ### delete
 rm *.json
 rm -r backup/

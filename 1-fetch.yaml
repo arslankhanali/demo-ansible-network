@@ -1,10 +1,10 @@
 ---
 - name: Fetch Cisco router startup config
-  hosts: cisco
+  hosts: rtr1
   gather_facts: false
 
   vars:
-    output_file: "/home/student/demo/{{ inventory_hostname }}_config.txt"
+    output_file: "/home/student/demo-ansible-network/{{ inventory_hostname }}_config.txt"
 
   tasks:
     - name: Get startup configuration
