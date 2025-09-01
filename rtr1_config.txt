@@ -171,7 +171,7 @@ ip access-list standard GS_NAT_ACL
 control-plane
 !
 banner motd ^C
-Welcome to the demo
+"There is no spoon... only an ansible playbook."
 ^C
 !
 line con 0
