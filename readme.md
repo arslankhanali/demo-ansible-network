@@ -1,3 +1,5 @@
+# DUMMY VALUES USED in this repository
+
 cd /Users/arslankhan/Codes/demo.redhat.com/Ansible-AcademySessions/demo-ansible-network
 
 ## Git clone and test push
@@ -158,7 +160,7 @@ git pull
 # git checkout -b update-rtr1-config
 git checkout update-rtr1-config
 git add rtr1_config.txt
-git commit -m "Update hostname and banner in rtr1 config"
+git commit -m "Update motd"
 git push -u origin update-rtr1-config
 
 git checkout main
