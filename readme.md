@@ -150,7 +150,6 @@ Go to github and add webhook
 
 
 ### 10. Open a PR
-### PR
 ```sh
 git checkout main
 git pull
@@ -166,15 +165,16 @@ git checkout main
 git pull
 ```
 
-### 10. Create app
+### 11. Create app
+``````
 pip install flask
 pip install Werkzeug
 
 chmod u+r rtr1_config.txt
 
-python app.py
+python3 app.py
 
-
+``````
 ### delete
 rm *.json
 rm -r backup/
@@ -185,17 +185,3 @@ rm -r backup/
 https://student1.ml647.example.opentlc.com/api/controller/v2/
 
 curl -u admin:43l7dlaf -k -X POST https://student1.ml647.example.opentlc.com/api/controller/v2/tokens/
-
-
-
-
-### PR
-git checkout main
-git pull
-git checkout -b update-rtr1-config
-git add rtr1_config.txt
-git commit -m "Update hostname and banner in rtr1 config"
-git push -u origin update-rtr1-config
-
-git checkout main
-git pull
