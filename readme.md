@@ -156,7 +156,8 @@ git checkout main
 git pull
 
 # -b when running for the first time 
-git checkout -b update-rtr1-config
+# git checkout -b update-rtr1-config
+git checkout update-rtr1-config
 git add rtr1_config.txt
 git commit -m "Update hostname and banner in rtr1 config"
 git push -u origin update-rtr1-config
