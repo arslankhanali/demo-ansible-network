@@ -172,16 +172,14 @@ git pull
 ```
 
 ### 11. Create app
-``````
+```sh
 pip install flask
 pip install requests
-pip install Werkzeug
 
-chmod u+r rtr1_config.txt
+python app3.py
 
-python3 app.py
+```
 
-``````
 ### delete
 rm *.json
 rm -r backup/
