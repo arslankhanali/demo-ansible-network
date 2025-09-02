@@ -19,5 +19,5 @@
     - name: Apply configuration from downloaded file
       cisco.ios.ios_config:
         src: "{{ local_config_file }}"
-        backup: yes
+        backup: no
         save_when: modified
