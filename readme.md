@@ -48,7 +48,7 @@ https://3.137.184.95
 ssh rtr1
 
 conf t
-username admin privilege 15 secret STRONGPASSWORD
+username admin privilege 15 secret admin
 ip http authentication local
 end
 wr mem
@@ -58,9 +58,18 @@ wr mem
 ## Demo Start
 ![flow](image1-usecase-flow.png)
 ![slide](image2-slide.png)
-When running a playbook with ansible-navigator run, you can use the --pae false (or --playbook-artifact-enable false)
+
+Lets start with a use case
+See if we can prototype the automation and take inspiration from the framework
+
+Framework is general enough that it should fit any use case
+You can pick and choose relevant elements from the framework
+
+Help you think and deconstruct the problem
 
 ### 1. Set motd
+Show webui and `sh run` command and show the motd if already set.
+
 ```sh
 ssh rtr1
 
@@ -74,7 +83,9 @@ wr mem
 
 ### 2. fetch config
 ```sh
-ansible-navigator inventory
+# Show inventory
+ansible-navigator inventory # TUI (Text-based User Interface)
+ansible --list-hosts cisco
 
 ansible-navigator run 1-fetch.yaml --mode stdout --pae false
 ```
