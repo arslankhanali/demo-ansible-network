@@ -13,5 +13,5 @@ git push -u origin main
 
 
 ## Pushes
-git add . && git commit -m "update motd" && git push
+git add . && git commit -m "update" && git push
 ```
