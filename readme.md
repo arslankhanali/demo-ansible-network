@@ -59,6 +59,7 @@ wr mem
 ![flow](image1-usecase-flow.png)
 ![slide](image2-slide.png)
 
+<<<<<<< HEAD
 Lets start with a use case
 See if we can prototype the automation and take inspiration from the framework
 
@@ -66,6 +67,8 @@ Framework is general enough that it should fit any use case
 You can pick and choose relevant elements from the framework
 
 Help you think and deconstruct the problem
+=======
+>>>>>>> 5405ffa (update motd)
 
 ### 1. Set motd
 Show webui and `sh run` command and show the motd if already set.
@@ -87,6 +90,7 @@ wr mem
 ansible-navigator inventory # TUI (Text-based User Interface)
 ansible --list-hosts cisco
 
+# When running a playbook with ansible-navigator run, you can use the --pae false (or --playbook-artifact-enable false)
 ansible-navigator run 1-fetch.yaml --mode stdout --pae false
 ```
 
