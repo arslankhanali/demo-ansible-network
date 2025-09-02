@@ -53,6 +53,8 @@ wr mem
 ---
 
 ## Demo Start
+![flow](image1-usecase-flow.png)
+![slide](image2-slide.png)
 When running a playbook with ansible-navigator run, you can use the --pae false (or --playbook-artifact-enable false)
 
 ### 1. Set motd
