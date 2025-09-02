@@ -25,6 +25,9 @@ EOL
 
 git rm -r --cached .
 
+# Stash local changes
+git stash
+git pull
 ```
 
 ### Login to cisco router - CLI
