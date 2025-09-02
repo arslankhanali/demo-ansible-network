@@ -1,5 +1,6 @@
 DS*
 *.json
+*.log
 backup/
 app2.py
 app3.py
